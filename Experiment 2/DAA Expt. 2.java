@@ -1,30 +1,28 @@
-/*
-Aim : Code implement power function in O(logn) time complexity.
-*/
-
-class PowerCalculator {
-    public static double power(double x, int y) {
-        if (y == 0) {
+class Solution {
+    public double myPow(double x, int n) {
+        if (n == 0) {
             return 1.0;
         }
-
-        if (y < 0) {
-            return 1.0 / power(x, -y);
+        if (n == Integer.MIN_VALUE) {
+            x = x * x;
+            n = n / 2;
         }
-
-        double temp = power(x, y / 2);
-
-        if (y % 2 == 0) {
-            return temp * temp;
-        } else {
-            return x * temp * temp;
+        if (n < 0) {
+            x = 1 / x;
+            n = -n;
         }
+        return calculatePower(x, n);
     }
-
-    public static void main(String[] args) {
-        System.out.println("2^5 = " + power(2, 5));
-        System.out.println("3^4 = " + power(3, 4));
-        System.out.println("2^-2 = " + power(2, -2));
-        System.out.println("5^0 = " + power(5, 0));
+    
+    private double calculatePower(double base, int exponent) {
+        if (exponent == 0) {
+            return 1.0;
+        }
+        double result = calculatePower(base, exponent / 2); 
+        if (exponent % 2 == 0) {
+            return result * result;
+        } else {
+            return base * result * result;
+        }
     }
 }
