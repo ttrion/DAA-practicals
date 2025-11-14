@@ -1,6 +1,7 @@
 class Solution {
     public int numIslands(char[][] grid) {
-                    return 0;
+        if (grid == null || grid.length == 0) {
+            return 0;
         }
         int m = grid.length;
         int n = grid[0].length;
@@ -9,12 +10,13 @@ class Solution {
             for (int c = 0; c < n; c++) {
                 if (grid[r][c] == '1') {
                     islandCount++;
-                    sinkIsland(grid, r, c);
+                    sinkIsland(grid, r, c); 
                 }
             }
         }
         return islandCount;
     }
+
     private void sinkIsland(char[][] grid, int r, int c) {
         int m = grid.length;
         int n = grid[0].length;
@@ -25,9 +27,9 @@ class Solution {
             return;
         }
         grid[r][c] = '0';
-        sinkIsland(grid, r + 1, c); 
-        sinkIsland(grid, r - 1, c); 
-        sinkIsland(grid, r, c + 1); 
-        sinkIsland(grid, r, c - 1); 
+        sinkIsland(grid, r + 1, c);
+        sinkIsland(grid, r - 1, c);
+        sinkIsland(grid, r, c + 1);
+        sinkIsland(grid, r, c - 1);
     }
 }
